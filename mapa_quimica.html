@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+
+body{
+font-family: Arial;
+text-align:center;
+background-color:#e8f4ff;
+}
+
+button{
+font-size:20px;
+margin:10px;
+padding:10px;
+border-radius:10px;
+cursor:pointer;
+}
+
+#info{
+margin-top:20px;
+font-size:20px;
+background:white;
+padding:10px;
+border-radius:10px;
+}
+
+</style>>
+<title>Mapa mental de química</title>
+</head>
+
+<body>
+
+<h1>Mapa Mental de Química</h1>
+
+<p>Haz clic en los iconos para ver información</p>
+
+</body<h1>los datos en las ramas son ejemplos</h1>
+
+<div>
+
+<button onclick="mostrarAtomo()">⚛️ Elemento</button>
+
+<button onclick="mostrarMateria()">🧪 Molecula</button>
+
+<button onclick="mostrarEnlace()">🏃 Su importancia en la act. física</button>
+
+</div>
+
+<p id="info"></p>>
+
+</html>
+<script>
+
+function mostrarAtomo(){
+document.getElementById("info").innerHTML =
+"";
+}
+
+function mostrarMateria(){
+document.getElementById("info").innerHTML =
+"";
+}
+
+function mostrarEnlace(){
+document.getElementById("info").innerHTML =
+"";
+}
+
+</script>
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Mapa mental de química</title>
+
+<style>
+
+body{
+text-align:center;
+font-family:Arial;
+background:#f0f0f0;
+}
+
+
+
+/* contenedor del mapa */
+.contenedor{
+position:relative;
+display:inline-block;
+transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* imagen */
+.contenedor img{
+width:900px;
+}
+
+/* iconos */
+.icono{
+position:absolute;
+font-size:30px;
+cursor:pointer;
+}
+
+/* pantalla nueva */
+.pantalla{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+opacity:0;
+pointer-events:none;
+transition: opacity 0.8s ease;
+}
+
+/* cuando se activa */
+.pantalla.activa{
+opacity:1;
+pointer-events:auto;
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Mapa mental de química</h1>
+
+<!-- MAPA -->
+<div class="contenedor">
+
+<img src="mapa.png">
+
+<span class="icono" style="top: 40px; left:200px;" onclick="atomo()">⚛️</span>
+
+<span class="icono" style="top:380px; left:215px;" onclick="materia()">🧪</span>
+
+<span class="icono" style="top:205px; left:650px;" onclick="enlace()">🏃</span>
+
+</div>
+
+<!-- PANTALLA DE INFO -->
+<div id="pantallaInfo" class="pantalla">
+
+<img id="imagenInfo" src="" width="300">
+
+<p id="textoInfo"></p>
+
+<button onclick="regresar()">Regresar</button>
+
+</div>
+
+<div id="info" class="info">
+Haz clic en un icono
+</div>
+
+<script>
+
+function abrirInfo(x, y, texto, imagen){
+
+let contenedor = document.querySelector(".contenedor");
+let pantalla = document.getElementById("pantallaInfo");
+
+// 1. zoom hacia el icono
+contenedor.style.transform =
+`scale(2) translate(-${x}px, -${y}px)`;
+
+// 2. desaparecer mapa
+contenedor.style.opacity = "0";
+
+// 3. mostrar pantalla nueva
+setTimeout(() => {
+pantalla.classList.add("activa");
+}, 600);
+
+// 4. cambiar contenido
+document.getElementById("textoInfo").innerHTML = texto;
+document.getElementById("imagenInfo").src = imagen;
+
+}
+
+// funciones de cada icono
+
+function atomo(){
+abrirInfo(200, 100,
+"",
+"elemento.png");
+}
+
+function materia(){
+abrirInfo(100, 250,
+"",
+"molecula.png");
+}
+
+function enlace(){
+abrirInfo(350, 150,
+"",
+"su importancia.png");
+}
+
+// botón regresar
+
+function regresar(){
+
+let contenedor = document.querySelector(".contenedor");
+let pantalla = document.getElementById("pantallaInfo");
+
+// ocultar pantalla
+pantalla.classList.remove("activa");
+
+// regresar mapa
+setTimeout(() => {
+contenedor.style.transform = "scale(1)";
+contenedor.style.opacity = "1";
+}, 300);
+
+}
+
+</script>
+
+</body>
+
+</html>
